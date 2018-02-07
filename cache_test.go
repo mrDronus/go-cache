@@ -107,7 +107,7 @@ func TestCacheTimes(t *testing.T) {
 }
 
 func TestNewFrom(t *testing.T) {
-	m := map[string]Item{
+	m := map[interface{}]Item{
 		"a": Item{
 			Object:     1,
 			Expiration: 0,
@@ -1231,7 +1231,7 @@ func TestOnEvicted(t *testing.T) {
 		t.Fatal("tc.onEvicted is not nil")
 	}
 	works := false
-	tc.OnEvicted(func(k string, v interface{}) {
+	tc.OnEvicted(func(k interface{}, v interface{}) {
 		if k == "foo" && v.(int) == 3 {
 			works = true
 		}
